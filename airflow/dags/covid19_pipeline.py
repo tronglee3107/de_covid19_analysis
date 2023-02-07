@@ -40,6 +40,7 @@ DATASET = "covid19_data"
 BIGQUERY_DATASET = os.environ.get("BIGQUERY_DATASET", "covid19_data_all")
 PYSPARK_URI_LOC = f'gs://{BUCKET}/dataproc/data_processing.py'
 
+
 CLUSTER_GENERATOR_CONFIG = ClusterGenerator(
     project_id=PROJECT_ID,
     zone=ZONE,
