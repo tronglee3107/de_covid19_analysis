@@ -1,0 +1,59 @@
+[2023-02-07T15:07:12.472+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: data_ingestion_gcs_dag.process_spark.spark_transform_sparksubmit scheduled__2023-02-06T00:00:00+00:00 [queued]>
+[2023-02-07T15:07:12.488+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: data_ingestion_gcs_dag.process_spark.spark_transform_sparksubmit scheduled__2023-02-06T00:00:00+00:00 [queued]>
+[2023-02-07T15:07:12.488+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2023-02-07T15:07:12.489+0000] {taskinstance.py:1280} INFO - Starting attempt 3 of 4
+[2023-02-07T15:07:12.489+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2023-02-07T15:07:12.510+0000] {taskinstance.py:1300} INFO - Executing <Task(DataprocSubmitJobOperator): process_spark.spark_transform_sparksubmit> on 2023-02-06 00:00:00+00:00
+[2023-02-07T15:07:12.523+0000] {standard_task_runner.py:55} INFO - Started process 1012 to run task
+[2023-02-07T15:07:12.536+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'data_ingestion_gcs_dag', 'process_spark.spark_transform_sparksubmit', 'scheduled__2023-02-06T00:00:00+00:00', '--job-id', '40', '--raw', '--subdir', 'DAGS_FOLDER/covid19_pipeline.py', '--cfg-path', '/tmp/tmpl2adavc9']
+[2023-02-07T15:07:12.537+0000] {standard_task_runner.py:83} INFO - Job 40: Subtask process_spark.spark_transform_sparksubmit
+[2023-02-07T15:07:12.652+0000] {task_command.py:388} INFO - Running <TaskInstance: data_ingestion_gcs_dag.process_spark.spark_transform_sparksubmit scheduled__2023-02-06T00:00:00+00:00 [running]> on host 954007308cda
+[2023-02-07T15:07:12.820+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=data_ingestion_gcs_dag
+AIRFLOW_CTX_TASK_ID=process_spark.spark_transform_sparksubmit
+AIRFLOW_CTX_EXECUTION_DATE=2023-02-06T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=3
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-02-06T00:00:00+00:00
+[2023-02-07T15:07:12.825+0000] {dataproc.py:1866} INFO - Submitting job
+[2023-02-07T15:07:12.826+0000] {crypto.py:83} WARNING - empty cryptography key - values will not be stored encrypted.
+[2023-02-07T15:07:12.827+0000] {base.py:73} INFO - Using connection ID 'google_cloud_default' for task execution.
+[2023-02-07T15:07:13.131+0000] {taskinstance.py:1768} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/api_core/grpc_helpers.py", line 50, in error_remapped_callable
+    return callable_(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/grpc/_channel.py", line 946, in __call__
+    return _end_unary_response_blocking(state, call, False, None)
+  File "/home/airflow/.local/lib/python3.7/site-packages/grpc/_channel.py", line 849, in _end_unary_response_blocking
+    raise _InactiveRpcError(state)
+grpc._channel._InactiveRpcError: <_InactiveRpcError of RPC that terminated with:
+	status = StatusCode.NOT_FOUND
+	details = "Not found: Cluster projects/driven-edition-377003/regions/asia-southeast2/clusters/covid19-process-cluster"
+	debug_error_string = "UNKNOWN:Error received from peer ipv4:142.251.10.95:443 {created_time:"2023-02-07T15:07:13.130495514+00:00", grpc_status:5, grpc_message:"Not found: Cluster projects/driven-edition-377003/regions/asia-southeast2/clusters/covid19-process-cluster"}"
+>
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/google/cloud/operators/dataproc.py", line 1875, in execute
+    metadata=self.metadata,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/google/common/hooks/base_google.py", line 462, in inner_wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/google/cloud/hooks/dataproc.py", line 784, in submit_job
+    metadata=metadata,
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/dataproc_v1/services/job_controller/client.py", line 524, in submit_job
+    metadata=metadata,
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/api_core/gapic_v1/method.py", line 154, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/api_core/retry.py", line 288, in retry_wrapped_func
+    on_error=on_error,
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/api_core/retry.py", line 190, in retry_target
+    return target()
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/api_core/grpc_helpers.py", line 52, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.NotFound: 404 Not found: Cluster projects/driven-edition-377003/regions/asia-southeast2/clusters/covid19-process-cluster
+[2023-02-07T15:07:13.153+0000] {taskinstance.py:1323} INFO - Marking task as UP_FOR_RETRY. dag_id=data_ingestion_gcs_dag, task_id=process_spark.spark_transform_sparksubmit, execution_date=20230206T000000, start_date=20230207T150712, end_date=20230207T150713
+[2023-02-07T15:07:13.171+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 40 for task process_spark.spark_transform_sparksubmit (404 Not found: Cluster projects/driven-edition-377003/regions/asia-southeast2/clusters/covid19-process-cluster; 1012)
+[2023-02-07T15:07:13.191+0000] {local_task_job.py:208} INFO - Task exited with return code 1

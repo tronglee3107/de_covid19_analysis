@@ -1,0 +1,44 @@
+[2023-02-07T14:59:01.810+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: data_ingestion_gcs_dag.gcp_to_bigquery.bq_vaccination_covid19_data_external_table_task scheduled__2023-02-06T00:00:00+00:00 [queued]>
+[2023-02-07T14:59:01.825+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: data_ingestion_gcs_dag.gcp_to_bigquery.bq_vaccination_covid19_data_external_table_task scheduled__2023-02-06T00:00:00+00:00 [queued]>
+[2023-02-07T14:59:01.825+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2023-02-07T14:59:01.825+0000] {taskinstance.py:1280} INFO - Starting attempt 4 of 4
+[2023-02-07T14:59:01.825+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2023-02-07T14:59:01.848+0000] {taskinstance.py:1300} INFO - Executing <Task(BigQueryCreateExternalTableOperator): gcp_to_bigquery.bq_vaccination_covid19_data_external_table_task> on 2023-02-06 00:00:00+00:00
+[2023-02-07T14:59:01.860+0000] {standard_task_runner.py:55} INFO - Started process 573 to run task
+[2023-02-07T14:59:01.867+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'data_ingestion_gcs_dag', 'gcp_to_bigquery.bq_vaccination_covid19_data_external_table_task', 'scheduled__2023-02-06T00:00:00+00:00', '--job-id', '39', '--raw', '--subdir', 'DAGS_FOLDER/covid19_pipeline.py', '--cfg-path', '/tmp/tmph78lramw']
+[2023-02-07T14:59:01.869+0000] {standard_task_runner.py:83} INFO - Job 39: Subtask gcp_to_bigquery.bq_vaccination_covid19_data_external_table_task
+[2023-02-07T14:59:01.973+0000] {task_command.py:388} INFO - Running <TaskInstance: data_ingestion_gcs_dag.gcp_to_bigquery.bq_vaccination_covid19_data_external_table_task scheduled__2023-02-06T00:00:00+00:00 [running]> on host 954007308cda
+[2023-02-07T14:59:02.086+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=data_ingestion_gcs_dag
+AIRFLOW_CTX_TASK_ID=gcp_to_bigquery.bq_vaccination_covid19_data_external_table_task
+AIRFLOW_CTX_EXECUTION_DATE=2023-02-06T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=4
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2023-02-06T00:00:00+00:00
+[2023-02-07T14:59:02.092+0000] {crypto.py:83} WARNING - empty cryptography key - values will not be stored encrypted.
+[2023-02-07T14:59:02.092+0000] {base.py:73} INFO - Using connection ID 'google_cloud_default' for task execution.
+[2023-02-07T14:59:02.829+0000] {taskinstance.py:1768} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/google/cloud/operators/bigquery.py", line 1591, in execute
+    table_resource=self.table_resource,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/google/common/hooks/base_google.py", line 462, in inner_wrapper
+    return func(self, *args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/google/cloud/hooks/bigquery.py", line 403, in create_empty_table
+    table=table, exists_ok=exists_ok, retry=retry
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/bigquery/client.py", line 755, in create_table
+    timeout=timeout,
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/bigquery/client.py", line 782, in _call_api
+    return call()
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/api_core/retry.py", line 288, in retry_wrapped_func
+    on_error=on_error,
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/api_core/retry.py", line 190, in retry_target
+    return target()
+  File "/home/airflow/.local/lib/python3.7/site-packages/google/cloud/_http/__init__.py", line 494, in api_request
+    raise exceptions.from_http_response(response)
+google.api_core.exceptions.BadRequest: 400 POST https://bigquery.googleapis.com/bigquery/v2/projects/driven-edition-377003/datasets/covid19_data_all/tables?prettyPrint=false: Error while reading table: vaccination_covid19_data_external_table, error message: Failed to expand table vaccination_covid19_data_external_table with file pattern gs://covid19_data_lake/clean/vaccination/*.parquet: matched no files. File: gs://covid19_data_lake/clean/vaccination/*.parquet
+[2023-02-07T14:59:02.844+0000] {taskinstance.py:1323} INFO - Marking task as FAILED. dag_id=data_ingestion_gcs_dag, task_id=gcp_to_bigquery.bq_vaccination_covid19_data_external_table_task, execution_date=20230206T000000, start_date=20230207T145901, end_date=20230207T145902
+[2023-02-07T14:59:02.865+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 39 for task gcp_to_bigquery.bq_vaccination_covid19_data_external_table_task (400 POST https://bigquery.googleapis.com/bigquery/v2/projects/driven-edition-377003/datasets/covid19_data_all/tables?prettyPrint=false: Error while reading table: vaccination_covid19_data_external_table, error message: Failed to expand table vaccination_covid19_data_external_table with file pattern gs://covid19_data_lake/clean/vaccination/*.parquet: matched no files. File: gs://covid19_data_lake/clean/vaccination/*.parquet; 573)
+[2023-02-07T14:59:02.921+0000] {local_task_job.py:208} INFO - Task exited with return code 1
+[2023-02-07T14:59:02.951+0000] {taskinstance.py:2578} INFO - 0 downstream tasks scheduled from follow-on schedule check
