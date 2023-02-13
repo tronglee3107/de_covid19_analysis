@@ -5,9 +5,7 @@
 - [Dataset](#dataset)
 - [Technologies Used](#technologies-used)
 - [Steps for Project Reproduction](#steps-for-project-reproduction)
-- [Summary of DAG of Data Pipeline and decisions regarding transformations](#Summary-of-DAG-of-Data-Pipeline-and-decisions-regarding-transformations)
-- [Dashboard](#dashboard)
-- [Conclusion](#conclusion)
+
 
 # Problem Description
 
